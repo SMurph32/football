@@ -1,0 +1,29 @@
+time is reduced after each play based linearly on how many  yards were earned. 
+sack only results in loss of 5 yards
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,93 +1,96 @@
-#ifndef ATHLETE_CPP
-#define ATHLETE_CPP
-#include"Athlete.cpp"
-#endif
-
-#ifndef MAKETEAM_CPP
-#define MAKETEAM_CPP
-#include"MakeTeam.cpp"
-#endif
-
-#ifndef TIMECLOCK_CPP
-#define TIMECLOCK_CPP
-#include"TimeClock.cpp"
-#endif
+#include"football.h"
 
 #define TIME 0.2
 using namespace std;
 
 
+
+int play, yrds=0, netyrds=0, pos = 20, i, thrw, down=0, tofirst=10, ipos;
+int kr, poss;
+
+//stats
+int Aatt=0, Apick=0, Asack=0, Amiss=0, Atd=0, Aswat=0, Acth=0, Apassyrds=0, Apunt=0;
+int Batt=0, Bpick=0, Bsack=0, Bmiss=0, Btd=0, Bswat=0, Bcth=0, Bpassyrds=0, Bpunt =0;
+int *att=0, *pick=0, *sack=0, *miss=0, *td=0, *swat=0, *cth=0, *passyrds=0, *punt=0;
+
 void game(Team A, Team B){
 
 
 
-	int play, yrds=0, passyrds=0, pos = 20, i, thrw, down=0, tofirst=10, ipos;
-	int score[2]= {0,0}, time = 3600;
 
-	int Awin=0, Bwin=0, z;
+	int Awin=0, Bwin=0, z, Akr = 100-65/A.k.getKickPower()+17, Bkr = 100-65/B.k.getKickPower()+17;
+	
+	int score[2] = {0,0}, time = 3600;
 
-
-	//stats
-	int Aatt=0, Apick=0, Asack=0, Amiss=0, Atd=0, Aswat=0, Acth=0, Apassyrds=0, Apunt=0;
-	int Batt=0, Bpick=0, Bsack=0, Bmiss=0, Btd=0, Bswat=0, Bcth=0, Bpassyrds=0, Bpunt =0;
 	string pause;
 
 	enum{GameStart, Aoff, Boff, Akick, Bkick}game;
 
 	//This string is used to be able to use the same statments functions
 	//to each team by having a variable for the team names
-	string Poss;
+	string poss_string;
 
 	game = GameStart;
 
-//	for(z=0;z<1000;z++){
+
+	//	for(z=0;z<1000;z++){
 	while(time>0 || score[0] == score[1]){
 		switch(game){
 			//Initiates game position and posession
 			case GameStart:
-				Poss = "Team B";
+				poss_string = "Team B";
+				poss = TEAMA;
 				game = Bkick;
 				pos = 65;
 				break;
 
-			//Team B kicks the ball to team A then the kick is returned b A.kr
-			//posession is changed
+				//Team B kicks the ball to team A then the kick is returned b A.kr
+				//posession is changed
 			case Bkick:
 				cout << "Kickoff!" << endl;
 				pos = Return(A.kr, B.k);
 				game = Aoff;
-				Poss = "Team A";
+				poss_string = "Team A";
+				poss = TEAMA;
 				break;
 
-			//Team A is on offene
+				//Team A is on offense
 			case Aoff:
-				
-				//The play is chosen here, play = 3 means long pass, 2 means medium pass, and 1 mean short pass
-				//pos is where the ball is, if pos reaches 100 they score
-				if(pos < 80){
-				
-					//If it is 4th down adn not close to scaring the team punts
-					if(down==4){
-						cout << "Team A punts" << endl;
-						pos = pos + Punt(B.kr, A.p);
-						Apunt++;
-						//If the ball is kicked into the endzome then it is a touchback
-						//and the other team gets it at the 20 yard line
-						if(pos>99){
-							cout << "Touchback" << endl;
-							pos=80;
-						}
-						pos = 100-pos;
-						game = Boff;
-						Poss = "Team B";
-						break;
+
+				kr = Akr;
+
+				play = PickPlay();
+
+				//If it is 4th down adn not close to scaring the team punts
+				if(down==4){
+					cout << "Team A punts" << endl;
+					pos = pos + Punt(B.kr, A.p);
+					Apunt++;
+					//If the ball is kicked into the endzome then it is a touchback
+					//and the other team gets it at the 20 yard line
+					if(pos>99){
+						cout << "Touchback" << endl;
+						pos=80;
 					}
-					play = 3;
+					pos = 100-pos;
+					game = Boff;
+					poss_string = "Team B";
+					break;
 				}
-				else if(pos > 80)
-					play = 2;
-				else if(pos > 95) 
+				play = 3;
+
+				if(down == 4){
+					if((Fieldgoal(A.k, (100-pos+17)))){
+						cout << "TOUCHDOWN!" << endl;
+						game = Akick;
+						score[0] += 3;
+					}
+				}
+
+				else if(pos > 95)
 					play = 1;
+				else 
+					play = 2;
 
 				//determines how many yards the pass will gain IF completeld
 				yrds = PassYards(play, A.qb, A.wr1, B.cb1);
@@ -116,13 +119,13 @@ void game(Team A, Team B){
 						Amiss++;
 						cout << "Incomplete!" << endl;
 					}
-					
+
 					//pass swatted
 					else if(thrw==1){
 						Aswat++;
 						cout << "Pass defended!" << endl;
 					}
-				
+
 					//pass intercepted
 					else if(thrw==2){
 						Apick++;
@@ -131,13 +134,13 @@ void game(Team A, Team B){
 						game = Boff;
 						pos = 100-pos-yrds;
 						if(pos<1){
-						//If the ball is intercepted in the endzome then it is a
-						//touchback and the other team gets it at the 20 yard line
+							//If the ball is intercepted in the endzome then it is a
+							//touchback and the other team gets it at the 20 yard line
 							cout << "Touchback" << endl;
 							pos=20;
 						}
 						cout << "Interception!" << endl;
-						Poss = "Team B";
+						poss_string = "Team B";
 					}
 
 					//pass caught
@@ -151,18 +154,20 @@ void game(Team A, Team B){
 				}
 				break;
 
-			//team A kicks to Team B, works same as B kick
+				//team A kicks to Team B, works same as B kick
 			case Akick:
 				cout << "Kickoff!" << endl;
 				pos = Return(B.kr, A.k);
-				Poss = "Team B";
+				poss_string = "Team B";
+				poss = TEAMB;
 				game = Boff;
 				down=0;
 				break;
 
-			//Team B is now on offence and Team A is defending, everything work the same as Aoff
+				//Team B is now on offence and Team A is defending, everything work the same as Aoff
 			case Boff:
 
+				kr = Bkr;
 				//length of pass is chosen, or the team punts
 				if(pos < 80){
 					if(down==4){
@@ -175,7 +180,7 @@ void game(Team A, Team B){
 						}
 						pos = 100-pos;
 						game = Aoff;
-						Poss = "Team A";
+						poss_string = "Team A";
 						break;
 					}
 					play = 3;
@@ -191,7 +196,7 @@ void game(Team A, Team B){
 				//time is taken off the clock	
 				time -= (yrds/TIME);
 
-	
+
 				//decides if qb is sacked
 				if(Blitz(A.rde, B.lt) || Blitz(A.rde, B.lt) || Blitz(A.rde, B.lt)){
 					Asack++;
@@ -228,7 +233,7 @@ void game(Team A, Team B){
 							pos=20;
 						}
 						cout << "Interception!" << endl;
-						Poss="Team A";
+						poss_string="Team A";
 						break;
 					}
 					//Pass completed
@@ -241,7 +246,7 @@ void game(Team A, Team B){
 
 					break;
 				}
-		cin >>;
+				//	cin.get();
 
 		}//end Switch
 
@@ -250,11 +255,11 @@ void game(Team A, Team B){
 		//the other team gets the ball
 		if(down==5){
 			if(game == Boff){
-				Poss = "Team A";
+				poss_string = "Team A";
 				game = Aoff;
 			}
 			else{
-				Poss = "Team B";
+				poss_string = "Team B";
 				game = Boff;
 			}
 		}
@@ -334,14 +339,14 @@ void game(Team A, Team B){
 
 		//Displays who has the ball, where they have it, the score of the
 		//game, what down it is, and how far they have to get a first down
-		Position(Poss, pos, score, down, tofirst);
+		Position(poss_string, pos, score, down, tofirst);
 
 		//Displays the time remaining by inputting an integer values of just seconds
 		//and it displays the hours, minutes, and seconds left
-//		TimeClock(time);
-		
+		//		TimeClock(time);
+
 		//Option  to pause the game after each play
-//		cin.get();
+		//		cin.get();
 
 	}//end while
 
@@ -358,18 +363,18 @@ void game(Team A, Team B){
 	cout << "QB was sacked " << Asack << " times!" << endl;
 	cout << "B Passer Rating: " << PasserRating(Bcth, Bpassyrds, Batt, Btd, Bpick) << endl;
 	cout << "Team B has punted " << Bpunt << " times " << endl;
-/*
-	if(score[0]>score[1])
-		Awin++;
-	if(score[1]>score[0])
-		Bwin++;
+	/*
+	   if(score[0]>score[1])
+	   Awin++;
+	   if(score[1]>score[0])
+	   Bwin++;
 
-//	cout << "score 1 " << score[0] << " score 2 " << score[1] << endl;
+	//	cout << "score 1 " << score[0] << " score 2 " << score[1] << endl;
 	score[0]=0;
 	score[1]=0;
 	time=3600;
-}
+	}
 	cout << "Team A won " << Awin << " games while team B won " << Bwin << " games." << endl;
-*/
+	 */
 }
 

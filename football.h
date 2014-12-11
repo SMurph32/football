@@ -10,6 +10,18 @@
 #include<ctime>
 #include<cmath>
 
+#define DEEPPASS	0
+#define MIDPASS		1
+#define SHORTPASS	2
+#define RSWEEP		3
+#define LSWEEP		4
+#define ROFFT		5
+#define LOFFT		6
+#define RDIVE		7
+#define LDIVE		8
+#define QBKEEP		9
+#define PUNT		10
+#define FIELDGOAL	11
 
 #ifndef ATHLETE_CPP
 #define ATHLETE_CPP
@@ -92,3 +104,26 @@
 #include"TimeClock.cpp"
 #endif
 
+#ifndef FIELDGOAL_CPP
+#define FIELDGOAL_CPP
+#include "Fieldgoal.cpp"
+#endif
+
+#ifndef POSSESSION_CPP
+#define POSSESSION_CPP
+#include "Possession.cpp"
+#endif
+
+#ifndef TURNOVER_CPP 
+#define TURNOVER_CPP
+#include "Turnover.cpp"
+#endif
+
+#ifndef PICKPLAY_CPP
+#define PICKPLAY_CPP
+#include "PickPlay.cpp"
+#endif
+
+int Possession();
+int Turnover();
+int Fieldgoal(Athlete k, int pos);

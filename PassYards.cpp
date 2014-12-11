@@ -18,11 +18,11 @@ int PassYards(int play, Athlete QB, Athlete WR, Athlete CB){
 	
 	x = (rand()%60);
 
-	if(play==3)
+	if(play==DEEPPASS)
 		yards = (pow(((x-50)/15.0),3)+5*sin(x)+30)*LONG;
-	if(play==2)
+	if(play==MIDPASS)
 		yards = (pow(((x-25)/12),3)+3*sin(x)+5)*MID;
-	if(play==1)
+	if(play==SHORTPASS)
 		yards = (pow(((x-20)/12),3)+3*sin(x)+4)*SHORT;
 
 

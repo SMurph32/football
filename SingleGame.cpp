@@ -13,7 +13,7 @@
 #include<ctime>
 #include<cmath>
 
-#include"football.h"
+#include "football.h"
 
 using namespace std;
 
@@ -44,7 +44,7 @@ int main()
 
 
 	//sets team B's quarterback to 75 overall
-	B.qb=GenerateQB(20);
+	B.qb=GenerateQB(90);
 	//sets team B's wide receiver to 75 overall
 	B.wr1=GenerateWR(75);
 	//sets team B's cornerback to 75 overall
