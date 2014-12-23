@@ -124,6 +124,17 @@
 #include "PickPlay.cpp"
 #endif
 
-int Possession();
+#ifndef RUNPLAY_CPP
+#define RUNPLAY_CPP
+#include "RunPlay.cpp"
+#endif
+
+#ifndef GAMESTATE_CPP
+#define GAMESTATE_CPP
+#include "gamestate.cpp"
+#endif
+
+int RunPlay();
+int Possession(int a);
 int Turnover();
 int Fieldgoal(Athlete k, int pos);

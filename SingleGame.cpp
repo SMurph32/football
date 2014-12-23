@@ -30,7 +30,7 @@ int main()
 	Team B = MakeTeam();
 
 	//Generates a player whos overall is the integer inside the function called. The skill ranges from 0-99
-	
+
 	//sets team A's quarterback to 90 overall
 	A.qb=GenerateQB(90);
 	//sets team A's wide receiver to 90 overall
@@ -56,7 +56,7 @@ int main()
 
 
 	//make team A and team B play against each other
-	game(A, B);
+	play_game(A, B);
 
 
 	return 1; 

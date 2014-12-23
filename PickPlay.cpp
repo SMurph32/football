@@ -7,6 +7,8 @@ extern int pos, down, tofirst, kr;
 int PickPlay(){
 	int x;
 
+
+	cout << kr << "is kr" << endl;
 	switch(down){
 		case 4:
 			x = rand()%100;
