@@ -217,7 +217,7 @@ int play_game(Team A1, Team B1){
 	//cout << "Team B has punted " << Bpunt << " time_lefts " << endl;
 	*/
 
-	A->qb.stats[PASSYARDS
+	UpdateStats();
 
 	cout << score[0] << "-" << score[1] << " ";
 

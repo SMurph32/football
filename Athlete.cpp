@@ -92,6 +92,7 @@ class Athlete{
 
 		int getTackle();
 
+		int stats[NUM_STATS];
 
 	private:
 
@@ -115,7 +116,6 @@ class Athlete{
 		int btk;
 		int tak;
 
-		int stats[NUM_STATS];
 };
 
 Athlete::Athlete(){

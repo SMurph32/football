@@ -30,6 +30,11 @@
 #include "stats.h"
 #endif
 
+#ifndef UPDATESTATS_CPP
+#define UPDATESTATS_CPP
+#include "UpdateStats.cpp"
+#endif
+
 #ifndef SIMDISPLAY_CPP
 #define SIMDISPLAY_CPP
 #include "SimDisplay.cpp"
@@ -151,6 +156,7 @@
 #include "gamestate.cpp"
 #endif
 
+int UpdateStats();
 int Run();
 int RunPlay();
 int Possession(int a);
