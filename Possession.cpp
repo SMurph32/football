@@ -6,9 +6,9 @@ extern enum gamestate state;
 
 extern string Aname, Bname, poss_string;
 
-extern int Afg, Aatt, Apick, Asack, Amiss, Atd, Aswat, Acth, Apassyrds, Apunt;
-extern int Bfg, Batt, Bpick, Bsack, Bmiss, Btd, Bswat, Bcth, Bpassyrds, Bpunt;
-extern int *fg, *att, *pick, *sack, *miss, *td, *swat, *cth, *passyrds, *punt;
+extern int Afg, Aatt, Apick, Asack, Amiss, Atd, Aswat, Acth, Apassyrds, Apunt, Arunyrds;
+extern int Bfg, Batt, Bpick, Bsack, Bmiss, Btd, Bswat, Bcth, Bpassyrds, Bpunt, Brunyrds;
+extern int *fg, *att, *pick, *sack, *miss, *td, *swat, *cth, *passyrds, *punt, *runyrds;
 
 
 
@@ -16,6 +16,7 @@ int Possession(int a){
 
 
 	if(a == TEAMA){
+		runyrds = &Arunyrds;
 		att	= &Aatt;
 		pick	= &Apick;
 		sack	= &Bsack;
@@ -29,6 +30,7 @@ int Possession(int a){
 		state = Aoff;
 		poss_string = Aname;
 	}else{
+		runyrds = &Brunyrds;
 		att 	= &Batt;
 		pick	= &Bpick;
 		sack	= &Asack;

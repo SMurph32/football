@@ -16,13 +16,13 @@ int score[2] = {0,0}, time_left = 3600;
 
 Team  *A, *B;
 //stats
-int Afg=0, Aatt=0, Apick=0, Asack=0, Amiss=0, Atd=0, Aswat=0, Acth=0, Apassyrds=0, Apunt=0;
-int Bfg=0, Batt=0, Bpick=0, Bsack=0, Bmiss=0, Btd=0, Bswat=0, Bcth=0, Bpassyrds=0, Bpunt =0;
-int *fg, *att, *pick, *sack, *miss, *td, *swat, *cth, *passyrds, *punt;
+int Afg=0, Aatt=0, Apick=0, Asack=0, Amiss=0, Atd=0, Aswat=0, Acth=0, Apassyrds=0, Apunt=0, Arunyrds=0;
+int Bfg=0, Batt=0, Bpick=0, Bsack=0, Bmiss=0, Btd=0, Bswat=0, Bcth=0, Bpassyrds=0, Bpunt =0, Brunyrds=0;
+int *fg, *att, *pick, *sack, *miss, *td, *swat, *cth, *passyrds, *punt, *runyrds;
 
 string Aname = "Team A", Bname = "Team B", poss_string;
 
-void play_game(Team A1, Team B1){
+int play_game(Team A1, Team B1){
 
 	int Awin=0, Bwin=0, z, Akr, Bkr;
 	int yrds=0, netyrds=0, thrw;
@@ -32,8 +32,13 @@ void play_game(Team A1, Team B1){
 
 	Akr = (25 + 30.0*A->k.getKickPower()/100.0) - 17;
 	Bkr = (25 + 30.0*B->k.getKickPower()/100.0) - 17;
-	cout << "Akr is " << Akr << " and Bkr is " << Bkr << endl;
 
+	score[0] = 0;
+	score[1] = 0;
+
+	time_left = 3600;
+
+	
 
 	string pause;
 
@@ -58,7 +63,7 @@ void play_game(Team A1, Team B1){
 				//Team B kicks the ball to team A then the kick is returned b A->kr
 				//posession is changed
 			case Bkick:
-				cout << "Kickoff!" << endl;
+				////cout << "Kickoff!" << endl;
 				pos = Return(A->kr, B->k);
 				state = Aoff;
 				poss_string = "Team A";
@@ -79,7 +84,7 @@ void play_game(Team A1, Team B1){
 				break;
 
 			case Akick:
-				cout << "Kickoff!" << endl;
+				////cout << "Kickoff!" << endl;
 				pos = Return(B->kr, A->k);
 				poss_string = "Team B";
 				poss = TEAMB;
@@ -125,7 +130,7 @@ void play_game(Team A1, Team B1){
 
 		//if pos >= 100 then the team is in teh endzome and they score
 		if(pos >= 100){
-			cout << "TOUCHDOWN!" << endl;
+			////cout << "TOUCHDOWN!" << endl;
 			//a score on Bkick or Aoff means that team A scored
 			if(state == Bkick || state == Aoff){
 				if(state==Aoff)
@@ -153,7 +158,7 @@ void play_game(Team A1, Team B1){
 		//Akick isn't technically what happens after a safety but it'll 
 		//work for now
 		else if(pos<1){
-			cout << "SAFETY!" << endl;
+			////cout << "SAFETY!" << endl;
 			//Team A got the safety
 			if(state == Bkick || state == Aoff){
 				state = Akick;
@@ -190,35 +195,35 @@ void play_game(Team A1, Team B1){
 		//Option  to pause the state after each play
 		//		cin.get();
 
-		if(down>10) return;
 
 	}//end while
 
-	//Displays post state stats for both teams
-	cout << "QB A has completed " << Acth << " out of " << Aatt << endl;
-	cout << "for " << Apassyrds << " yards with " << Apick << " interceptions and " << Atd << " TDs" << endl;
-	cout << "QB was sacked " << Bsack << " times!" << endl;
-	cout << "A Passer Rating: " << PasserRating(Acth, Apassyrds, Aatt, Atd, Apick) << endl;
-	cout << "Team A has punted " << Apunt << " time_lefts " << endl;
-
-
-	cout << "QB has completed " << Bcth << " out of " << Batt << endl;
-	cout << "for " << Bpassyrds << " yards with " << Bpick << " interceptions and " << Btd << " TDs" << endl;
-	cout << "QB was sacked " << Asack << " times!" << endl;
-	cout << "B Passer Rating: " << PasserRating(Bcth, Bpassyrds, Batt, Btd, Bpick) << endl;
-	cout << "Team B has punted " << Bpunt << " time_lefts " << endl;
 	/*
-	   if(score[0]>score[1])
-	   Awin++;
-	   if(score[1]>score[0])
-	   Bwin++;
 
-	//	cout << "score 1 " << score[0] << " score 2 " << score[1] << endl;
-	score[0]=0;
-	score[1]=0;
-	time_left=3600;
-	}
-	cout << "Team A won " << Awin << " states while team B won " << Bwin << " states." << endl;
-	 */
+	//Displays post state stats for both teams
+	//cout << "QB A has completed " << Acth << " out of " << Aatt << endl;
+	//cout << "for " << Apassyrds << " yards with " << Apick << " interceptions and " << Atd << " TDs" << endl;
+	//cout << "QB was sacked " << Bsack << " times!" << endl;
+	//cout << "A Passer Rating: " << PasserRating(Acth, Apassyrds, Aatt, Atd, Apick) << endl;
+	//cout << "A rushed for " << Arunyrds << " yards." << endl;
+	//cout << "Team A has punted " << Apunt << " time_lefts " << endl;
+
+
+	//cout << "QB has completed " << Bcth << " out of " << Batt << endl;
+	//cout << "for " << Bpassyrds << " yards with " << Bpick << " interceptions and " << Btd << " TDs" << endl;
+	//cout << "QB was sacked " << Asack << " times!" << endl;
+	//cout << "B Passer Rating: " << PasserRating(Bcth, Bpassyrds, Batt, Btd, Bpick) << endl;
+	//cout << "B rushed for " << Brunyrds << " yards." << endl;
+	//cout << "Team B has punted " << Bpunt << " time_lefts " << endl;
+	*/
+
+	A->qb.stats[PASSYARDS
+
+	cout << score[0] << "-" << score[1] << " ";
+
+	if(score[0] > score[1]) return 1;
+	if(score[0] < score[1]) return -1;
+	if(score[0] == score[1]) return 0;
+	
 }
 

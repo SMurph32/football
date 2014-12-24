@@ -23,11 +23,28 @@
 #define PUNT		10
 #define FIELDGOAL	11
 
+
+
+#ifndef STATS_H
+#define STATS_H
+#include "stats.h"
+#endif
+
+#ifndef SIMDISPLAY_CPP
+#define SIMDISPLAY_CPP
+#include "SimDisplay.cpp"
+#endif
+
 #ifndef ATHLETE_CPP
 #define ATHLETE_CPP
 #include"Athlete.cpp"
 #endif
 
+
+#ifndef RUN_CPP
+#define RUN_CPP
+#include "Run.cpp"
+#endif
 
 #ifndef PASS_CPP
 #define PASS_CPP
@@ -134,6 +151,7 @@
 #include "gamestate.cpp"
 #endif
 
+int Run();
 int RunPlay();
 int Possession(int a);
 int Turnover();

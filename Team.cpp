@@ -39,8 +39,8 @@ public:
 	Athlete lde;
 	Athlete dt1;
 	Athlete dt2;
-	Athlete rold;
-	Athlete mld;
+	Athlete rolb;
+	Athlete mlb;
 	Athlete lolb;
 	Athlete cb1;
 	Athlete cb2;
@@ -86,8 +86,8 @@ Team::Team(Athlete newqb1, Athlete newqb2, Athlete newrb1, Athlete newrb2, Athle
 	lde = newde2;
 	dt1 = newdt1;
 	dt2 = newdt2;
-	rold = newolb2;
-	mld = newmlb1;
+	rolb = newolb2;
+	mlb = newmlb1;
 	lolb = newolb1;
 	cb1 = newcb1;
 	cb2 = newcb2;

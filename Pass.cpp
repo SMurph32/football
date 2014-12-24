@@ -37,8 +37,8 @@ int Pass(Athlete QB, Athlete WR, Athlete CB, int deep, int time){
 	swat = ((tan(deep/60.0)/1.57)*speed + (1-tan(deep/60.0)/1.57)*cover+1)/7.0;
 
 
-//	cout << "cmp is " << cth << endl;
-//	cout << "cth is " << swat*100 << endl;
+//	//cout << "cmp is " << cth << endl;
+//	//cout << "cth is " << swat*100 << endl;
 
 	
 	

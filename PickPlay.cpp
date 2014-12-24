@@ -141,7 +141,7 @@ int PickPlay(){
 			}//under 5 to first
 			break;
 	}//end switch
-	cout << "ERROR: Did not correctly select play!" << endl;
+	//cout << "ERROR: Did not correctly select play!" << endl;
 	return -1; //error
 }
 

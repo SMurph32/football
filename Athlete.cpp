@@ -6,15 +6,15 @@
  * ** Post-Conditions:	An athlete is created with the set stats and all non-set stats equal to 20
  * *********************************************************************/
 class Athlete{
-public:
+	public:
 		Athlete();
-			
+
 		Athlete(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m, int n, int o, int p, int q, int r, int s);
 
 		void Empty();
 
 		void setSpeed(int newSpd);
-	
+
 		void setStrength(int newStr);
 
 		void setAgility(int newAgi);
@@ -51,11 +51,11 @@ public:
 
 		void setTackle(int newTak);
 
-		
-		
+
+
 
 		int getSpeed();
-		
+
 		int getStrength();
 
 		int getAgility();
@@ -77,11 +77,11 @@ public:
 		int getStamina();
 
 		int getInjury();
-	
+
 		int getToughness();
 
 		int getBlocking();
-			
+
 		int getCoverage();
 
 		int getReturn();
@@ -89,11 +89,11 @@ public:
 		int getBlockShed();
 
 		int getBreakTackle();
-		 
+
 		int getTackle();
 
-		
-private:
+
+	private:
 
 		int spd;
 		int str;
@@ -114,74 +114,84 @@ private:
 		int bsh;
 		int btk;
 		int tak;
+
+		int stats[NUM_STATS];
 };
 
 Athlete::Athlete(){
-		spd=20;
-		str=20;
-		agi=20;
-		thp=20;
-		tha=20;
-		awr=20;
-		cth=20;
-		rte=20;
-		kp=20;
-		ka=20;
-		sta=20;
-		inj=20;
-		tgh=20;
-		cvr=20;
-		blk=20;
-		ret=20;
-		bsh=20;
-		btk=20;
-		tak=20;
+	spd=20;
+	str=20;
+	agi=20;
+	thp=20;
+	tha=20;
+	awr=20;
+	cth=20;
+	rte=20;
+	kp=20;
+	ka=20;
+	sta=20;
+	inj=20;
+	tgh=20;
+	cvr=20;
+	blk=20;
+	ret=20;
+	bsh=20;
+	btk=20;
+	tak=20;
+
+	int i;
+	for(i=0;i<NUM_STATS;i++)
+		stats[i]=0;
+
 }
 
 Athlete::Athlete(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m, int n, int o, int p, int q, int r, int s){
-		
-		spd=a;
-		str=b;
-		agi=c;
-		thp=d;
-		tha=e;
-		awr=f;
-		cth=g;
-		rte=h;
-		kp=i;
-		ka=j;
-		sta=k;
-		inj=l;
-		tgh=m;
-		cvr=n;
-		blk=o;	
-		ret=p;
-		bsh=q;
-		btk=r;
-		tak=s;
+
+	spd=a;
+	str=b;
+	agi=c;
+	thp=d;
+	tha=e;
+	awr=f;
+	cth=g;
+	rte=h;
+	kp=i;
+	ka=j;
+	sta=k;
+	inj=l;
+	tgh=m;
+	cvr=n;
+	blk=o;	
+	ret=p;
+	bsh=q;
+	btk=r;
+	tak=s;
+	int x;
+	for(x=0;x<NUM_STATS;x++)
+		stats[x]=0;
 }
 
 void Athlete::Empty(){
-		
-		spd=0;
-		str=0;
-		agi=0;
-		thp=0;
-		tha=0;
-		awr=0;
-		cth=0;
-		rte=0;
-		kp=0;
-		ka=0;
-		sta=0;
-		inj=0;
-		tgh=0;
-		cvr=0;
-		blk=0;	
-		ret=0;
-		bsh=0;
-		btk=0;
-		tak=0;
+
+	spd=0;
+	str=0;
+	agi=0;
+	thp=0;
+	tha=0;
+	awr=0;
+	cth=0;
+	rte=0;
+	kp=0;
+	ka=0;
+	sta=0;
+	inj=0;
+	tgh=0;
+	cvr=0;
+	blk=0;	
+	ret=0;
+	bsh=0;
+	btk=0;
+	tak=0;
 }
 
 void Athlete::setSpeed(int newSpd){
@@ -263,7 +273,7 @@ void Athlete::setTackle(int newTak){
 int Athlete::getSpeed(){
 	return spd;
 }
-		
+
 int Athlete::getStrength(){
 	return str;
 }

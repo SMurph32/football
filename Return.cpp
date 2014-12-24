@@ -16,10 +16,10 @@ int Return(Athlete kr, Athlete k){
 	start = (5*sin(rand())-5.0)+((100-k.getKickPower())/3.0);
 
 
-	cout << "The ball is kicked to the " << start << " yard line." << endl;
+	//cout << "The ball is kicked to the " << start << " yard line." << endl;
 
 	if(start < -3){
-		cout << "The returner takes a knee." << endl;
+		//cout << "The returner takes a knee." << endl;
 		return 20;
 	}
 
@@ -38,15 +38,15 @@ int Return(Athlete kr, Athlete k){
 		x = (100-x);
 
 	if(yards < 1){
-		cout << "The returner has takes a knee in the endzone. Touchback."  << endl;
+		//cout << "The returner has takes a knee in the endzone. Touchback."  << endl;
 		return (20);
 	}
 
 	if(yards < 100){
-		cout << "The returner has taken the ball " << yards << " yards to the " << x << " yard line." << endl;
+		//cout << "The returner has taken the ball " << yards << " yards to the " << x << " yard line." << endl;
 		return (yards + start);
 	}
 
-	cout << "The returner has taken the ball " << 100-start << " yards for the TOUCHDOWN!." << endl;
+	//cout << "The returner has taken the ball " << 100-start << " yards for the TOUCHDOWN!." << endl;
 	return 101;
 }

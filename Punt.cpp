@@ -13,7 +13,7 @@ int Punt(Athlete kr, Athlete p){
 		d=((100*x/(x+2))-(150/(x-100))-50);
 		d *= (0.7*p.getKickPower()+.3*p.getKickAccuracy())/100;
 
-		cout << "The punt went " << d << " yards" << endl;
+		//cout << "The punt went " << d << " yards" << endl;
 
 		return d;
 }
