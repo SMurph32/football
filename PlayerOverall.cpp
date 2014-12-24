@@ -65,3 +65,12 @@ int DEOverall(Athlete A){
 		else
 				return ovr;
 }
+
+int KOverall(Athlete A){
+			int ovr = (-3000/(((A.getSpeed()*DESPEED+A.getStrength()*DESTRENGTH + A.getBlockShed()*DEBLOCKSHED)/3)-120)+10);
+
+		if(ovr>99)
+				return 99;
+		else
+				return ovr;
+}

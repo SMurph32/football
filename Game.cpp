@@ -24,12 +24,15 @@ string Aname = "Team A", Bname = "Team B", poss_string;
 
 void play_game(Team A1, Team B1){
 
+	int Awin=0, Bwin=0, z, Akr, Bkr;
+	int yrds=0, netyrds=0, thrw;
 
 	A = &A1;
 	B = &B1;
 
-	int Awin=0, Bwin=0, z, Akr = 100-65/A->k.getKickPower()+17, Bkr = 100-65/B->k.getKickPower()+17;
-	int yrds=0, netyrds=0, thrw;
+	Akr = (25 + 30.0*A->k.getKickPower()/100.0) - 17;
+	Bkr = (25 + 30.0*B->k.getKickPower()/100.0) - 17;
+	cout << "Akr is " << Akr << " and Bkr is " << Bkr << endl;
 
 
 	string pause;
@@ -60,6 +63,7 @@ void play_game(Team A1, Team B1){
 				state = Aoff;
 				poss_string = "Team A";
 				poss = TEAMA;
+				Possession(poss);
 				tofirst = 10;
 				down = 0;
 				break;
@@ -99,14 +103,7 @@ void play_game(Team A1, Team B1){
 		//4th down then it's a turnover and
 		//the other team gets the ball
 		if(down==5){
-			if(state == Boff){
-				poss_string = "Team A";
-				state = Aoff;
-			}
-			else{
-				poss_string = "Team B";
-				state = Boff;
-			}
+			Turnover();		
 		}
 
 		//Calculates prograssion to the next first down
@@ -200,14 +197,14 @@ void play_game(Team A1, Team B1){
 	//Displays post state stats for both teams
 	cout << "QB A has completed " << Acth << " out of " << Aatt << endl;
 	cout << "for " << Apassyrds << " yards with " << Apick << " interceptions and " << Atd << " TDs" << endl;
-	cout << "QB was sacked " << Bsack << " time_lefts!" << endl;
+	cout << "QB was sacked " << Bsack << " times!" << endl;
 	cout << "A Passer Rating: " << PasserRating(Acth, Apassyrds, Aatt, Atd, Apick) << endl;
 	cout << "Team A has punted " << Apunt << " time_lefts " << endl;
 
 
 	cout << "QB has completed " << Bcth << " out of " << Batt << endl;
 	cout << "for " << Bpassyrds << " yards with " << Bpick << " interceptions and " << Btd << " TDs" << endl;
-	cout << "QB was sacked " << Asack << " time_lefts!" << endl;
+	cout << "QB was sacked " << Asack << " times!" << endl;
 	cout << "B Passer Rating: " << PasserRating(Bcth, Bpassyrds, Batt, Btd, Bpick) << endl;
 	cout << "Team B has punted " << Bpunt << " time_lefts " << endl;
 	/*

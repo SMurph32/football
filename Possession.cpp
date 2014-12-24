@@ -16,6 +16,7 @@ int Possession(int a){
 
 
 	if(a == TEAMA){
+		att	= &Aatt;
 		pick	= &Apick;
 		sack	= &Bsack;
 		miss	= &Amiss;
@@ -28,6 +29,7 @@ int Possession(int a){
 		state = Aoff;
 		poss_string = Aname;
 	}else{
+		att 	= &Batt;
 		pick	= &Bpick;
 		sack	= &Asack;
 		miss	= &Bmiss;

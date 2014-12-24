@@ -42,6 +42,12 @@ int main()
 	//sets team A's blitzer to 90 overall
 	A.rde=GenerateDE(90);
 
+	A.rde=GenerateK(90);
+
+
+	A.k.setKickPower(90);
+
+	A.k.setKickAccuracy(90);
 
 	//sets team B's quarterback to 75 overall
 	B.qb=GenerateQB(90);
@@ -55,6 +61,9 @@ int main()
 	B.rde=GenerateDE(75);
 
 
+	B.k.setKickPower(99);
+
+	B.k.setKickAccuracy(99);
 	//make team A and team B play against each other
 	play_game(A, B);
 

@@ -22,14 +22,11 @@ int RunPlay(){
 
 	int yrds, thrw;
 
-	cout << "SELECTING PLAY " << play << endl;
 
-	switch(play){
-
-		case PUNT:	
+		if(play ==  PUNT){	
 			cout << "Team punts" << endl;
 			pos = pos + Punt(D->kr, O->p);
-			punt++;
+			punt+=1;
 
 			//If the ball is kicked into the endzome then it is a touchback
 			//and the other team gets it at the 20 yard line
@@ -40,12 +37,12 @@ int RunPlay(){
 			pos = 100-pos;
 			state = Boff;
 			return 1;
-			break;
-		case FIELDGOAL:
+		} else if(play == FIELDGOAL){
+
 			if(Fieldgoal(O->k, (100-pos+17))){
 				cout << "Fieldgoal is good!" << endl;
 				state = Akick;
-				*fg++;
+				*fg+=1;
 				score[0] += 3;
 			} else {
 				cout << "Fieldgoal is no good!" << endl;
@@ -53,9 +50,10 @@ int RunPlay(){
 				Turnover();
 			}
 			return 1;
-			break;
-
-		case DEEPPASS:
+		} else if( 	   play == DEEPPASS
+				|| play == MIDPASS
+				|| play == SHORTPASS
+			 ){
 			//determines how many yards the pass will gain IF completeld
 			yrds = PassYards(play, O->qb, O->wr1, D->cb1);
 
@@ -65,7 +63,7 @@ int RunPlay(){
 
 			//if this is true then the QB was sacked. Team A loses 5 yards and the down
 			if(Blitz(O->rde, D->lt) || Blitz(O->rde, D->lt) || Blitz(O->rde, D->lt)){
-				*sack++;
+				*sack+=1;
 				pos -= 5;
 
 			}else{
@@ -74,23 +72,23 @@ int RunPlay(){
 				//defender intercepted the pass which means team B is then on offence, and a 3 means 
 				//team A's receiver successfully caught the ball
 				thrw=Pass(O->qb, O->wr1, D->cb1, yrds, time_left);
-				*att++;
+				*att+=1;
 
 				//miss or dropped
 				if(thrw==0){
-					*miss++;
+					*miss+=1;
 					cout << "Incomplete!" << endl;
 				}
 
 				//pass swatted
 				else if(thrw==1){
-					*swat++;
+					*swat+=1;
 					cout << "Pass defended!" << endl;
 				}
 
 				//pass intercepted
 				else if(thrw==2){
-					*pick++;
+					*pick+=1;
 					down=0;
 					tofirst=10;
 					state = Boff;
@@ -106,16 +104,15 @@ int RunPlay(){
 
 				//pass caught
 				else if(thrw==3){
-					*cth++;
-					passyrds += yrds;
+					*cth+=1;
+					*passyrds += yrds;
 					cout << "Pass completed for " << yrds << " yards!" << endl;
 					pos = pos + yrds;
 				}
 
 			}
-			break;
 
 
-	}
-	return 1;
+		}
+		return 1;
 }

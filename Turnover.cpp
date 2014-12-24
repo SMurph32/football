@@ -11,7 +11,7 @@ int Turnover(){
 	if(poss == TEAMA)	{Possession(TEAMB);}
 	else if(poss == TEAMB)	{Possession(TEAMA);}
 	
-	down = 1;
+	down = 0;
 
 	if(pos <= 90) 	tofirst = 10;
 	else 		tofirst = 100-pos;	

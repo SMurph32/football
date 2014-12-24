@@ -37,6 +37,10 @@ int Return(Athlete kr, Athlete k){
 	if(x > 50)
 		x = (100-x);
 
+	if(yards < 1){
+		cout << "The returner has takes a knee in the endzone. Touchback."  << endl;
+		return (20);
+	}
 
 	if(yards < 100){
 		cout << "The returner has taken the ball " << yards << " yards to the " << x << " yard line." << endl;

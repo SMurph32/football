@@ -12,7 +12,7 @@ int Fieldgoal(Athlete k, int pos){
 
 	x = rand()%100;
 
-	d = 50 + 100*pow(((pos-60*k.getKickPower()/100)/10), 3);
+	d = 0.5*pos - 10 + pow((1.2 * (pos - k.getKickPower()/2.5)/10.0), 3);
 
 	if(d>x) return 0; //not enough kickpower then return 0
 

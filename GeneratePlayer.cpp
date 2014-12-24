@@ -48,6 +48,32 @@ Athlete GenerateQB(int ovr){
 		return newQB;
 }
 
+Athlete GenerateK(int ovr){
+
+		Athlete newK;
+		int x, att=0, give=0;
+
+		
+		x = rand()%40+60;
+
+	
+		newK.setKickPower(x);
+
+		while(KOverall(newK) > ovr+give || KOverall(newK) < ovr-give ){
+			att++;
+	//		cout << "Att" << endl;
+		if(att==1000){
+		//	cout << "Give" << endl;
+			att=0;
+			give++;
+		}
+		newK.setThrowPower(rand()%100);
+		newK.setThrowAccuracy(rand()%100);
+		newK.setAwareness(rand()%100);
+		}
+		
+		return newK;
+}
 
 Athlete GenerateWR(int ovr){
 
