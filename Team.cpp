@@ -52,7 +52,9 @@ public:
 	Athlete pr;
 
 	//This is being used for adding running into the game
-	Athlete LineAvg();
+;;	Athlete LineAvg();
+
+	int record[3];
 	
 private:
 	
@@ -60,6 +62,15 @@ private:
 //	Athlete starters[26];
 
 };
+
+Team::Team(){
+
+	record[0] = 0;
+	record[1] = 0;
+	record[2] = 0;
+	
+};
+
 
 Team::Team(Athlete newqb1, Athlete newqb2, Athlete newrb1, Athlete newrb2, Athlete newfb, Athlete newwr1, Athlete newwr2, Athlete newwr3, Athlete newwr4,
 		Athlete newte1, Athlete newte2, Athlete newt1, Athlete newt2, Athlete newt3, Athlete newt4, Athlete newg1, Athlete newg2, Athlete newg3, Athlete newg4, 
@@ -99,6 +110,10 @@ Team::Team(Athlete newqb1, Athlete newqb2, Athlete newrb1, Athlete newrb2, Athle
 	pr = newpr;
 
 
+	record[0] = 0;
+	record[1] = 0;
+	record[2] = 0;
+	
 
 }
 

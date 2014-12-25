@@ -116,6 +116,11 @@
 #include"Game.cpp"
 #endif
 
+#ifndef INITSTATS_CPP
+#define INITSTATS_CPP
+#include "InitStats.cpp"
+#endif 
+
 #ifndef MAKETEAM_CPP
 #define MAKETEAM_CPP
 #include"MakeTeam.cpp"
@@ -156,6 +161,7 @@
 #include "gamestate.cpp"
 #endif
 
+void InitStats();
 int UpdateStats();
 int Run();
 int RunPlay();

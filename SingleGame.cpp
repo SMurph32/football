@@ -52,9 +52,33 @@ int main()
 
 	A.k.setKickAccuracy(90);
 
-	//make team A and team B play against each other
-	for(i=0;i<31;i++) SimDisplay(week++,  play_game(A, B[i]));
+	//make team A and teams B play against each other
+	for(i=0;i<31;i++) 
 
+		switch(SimDisplay(week++,  play_game(&A, &B[i]))){
+			case -1:
+				A.record[1]++;
+				break;
+
+			case 0:
+				A.record[2]++;
+				break;
+
+			case 1:
+				A.record[0]++;
+				break;
+
+		}
+
+
+
+
+
+
+
+	cout << "QB has thrown for "<< A.qb.stats[PASSYARDS] << endl;
+
+	cout << "Team record is " << A.record[0] << "-" << A.record[1] << "-" << A.record[2] << endl;
 
 	return 1; 
 }

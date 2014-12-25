@@ -22,13 +22,13 @@ int *fg, *att, *pick, *sack, *miss, *td, *swat, *cth, *passyrds, *punt, *runyrds
 
 string Aname = "Team A", Bname = "Team B", poss_string;
 
-int play_game(Team A1, Team B1){
+int play_game(Team *A1, Team *B1){
 
 	int Awin=0, Bwin=0, z, Akr, Bkr;
 	int yrds=0, netyrds=0, thrw;
 
-	A = &A1;
-	B = &B1;
+	A = A1;
+	B = B1;
 
 	Akr = (25 + 30.0*A->k.getKickPower()/100.0) - 17;
 	Bkr = (25 + 30.0*B->k.getKickPower()/100.0) - 17;
@@ -54,6 +54,7 @@ int play_game(Team A1, Team B1){
 		switch(state){
 			//Initiates state position and posession
 			case GameStart:
+				InitStats();
 				poss_string = "Team B";
 				poss = TEAMA;
 				state = Bkick;

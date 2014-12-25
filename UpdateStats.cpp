@@ -10,9 +10,7 @@ extern Team *A, *B;
 
 int UpdateStats(){
 
-A->qb.stats[PASSYARDS] += Apassyrds;
-
-
+	A->qb.stats[PASSYARDS] += Apassyrds;
 
 	return 1;
 }
